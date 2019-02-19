@@ -8,7 +8,11 @@
 # testing
 /coverage
 
+<<<<<<< HEAD
 
+=======
+# production
+>>>>>>> revise .gitignore file
 
 
 # misc
