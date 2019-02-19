@@ -1,17 +1,21 @@
 import React from 'react';
-import TodoInput from './todoInput.js'
+import TodoInput from './todoInput.js';
+import TodoItem from './TodoItem.js';
 
 class Application extends React.Component {
     constructor (props){
         super(props);
         this.state = {
             newTodo: 'test',
-            todoList: [{id:1, title: '我的待办'}]
+            todoList: [
+                {id:1, title: '我的待办1'},
+                {id:2, title: '我的待办2'}
+            ]
         }
     }
     render (){
         let todos = this.state.todoList.map((item, index) => {
-            return <li>item.title</li>
+        return (<li>><TodoItem todo={item}/></li>)
         })
 
         return (
@@ -20,9 +24,9 @@ class Application extends React.Component {
                 <div className='inputWrapper' >
                     <TodoInput content={this.state.newTodo} />
                 </div>
-                <ul>
+                <ol>
                     {todos}
-                </ul>
+                </ol>
             </div>
 
         )
