@@ -15,8 +15,8 @@ class App extends React.Component {
         }
     }
     render (){
-        let todos = this.state.todoList.map((item, index) => {
-        return (<li><TodoItem todo={item} key={index} onToggle={this.toggle.bind(this)}/></li>)
+        let todos = this.state.todoList.filter((item)=>!item.deleted).map((item, index) => {
+        return (<li><TodoItem todo={item} key={index} onToggle={this.toggle.bind(this)} onDelete={this.delete.bind(this)}/></li>)
         })
 
 
@@ -26,7 +26,7 @@ class App extends React.Component {
                 <div className='inputWrapper' >
                     <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)} onChange={this.changeTitle.bind(this)}/>
                 </div>
-                <ol>
+                <ol className='todoList'>
                     {todos}
                 </ol>
             </div>
@@ -57,6 +57,11 @@ class App extends React.Component {
 
     toggle(todo,e){
       todo.status=todo.status==='completed'? '':'completed'
+      this.setState(this.state)
+    }
+
+    delete(todo,e){
+      todo.deleted='true'
       this.setState(this.state)
     }
 }
