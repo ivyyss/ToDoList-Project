@@ -9,23 +9,23 @@ class App extends React.Component {
     constructor (props){
         super(props);
         this.state = {
-            newTodo: 'test',
+            newTodo: '',
             todoList: [
-                {id:1, title: '我的待办1'},
-                {id:2, title: '我的待办2'}
             ]
         }
     }
     render (){
         let todos = this.state.todoList.map((item, index) => {
-        return (<li><TodoItem todo={item}/></li>)
+        return (<li><TodoItem todo={item} key={index}/></li>)
         })
+
+        console.log(todos)
 
         return (
             <div className='App'>
                 <h1>我的待办</h1>
                 <div className='inputWrapper' >
-                    <TodoInput content={this.state.newTodo} onSubmit={this.addTodo} />
+                    <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)} onChange={this.changeTitle.bind(this)}/>
                 </div>
                 <ol>
                     {todos}
@@ -34,9 +34,33 @@ class App extends React.Component {
 
         )
     }
-    addTodo() {
-      console.log('需要添加一个todo')
+
+    addTodo(event) {
+      this.state.todoList.push({
+        id: idMaker(),
+        title: event.target.value,
+        status: null,
+        deleted: false
+      })
+      this.setState({
+        newTodo: '',
+        todoList: this.state.todoList
+      })
     }
+
+    changeTitle(event){
+      this.setState({
+        newTodo: event.target.value,
+        todoList: this.state.todoList
+      })
+
+    }
+}
+
+let id = 0
+function idMaker(){
+  id+=1
+  return id
 }
 
 export default App;
