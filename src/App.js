@@ -16,10 +16,9 @@ class App extends React.Component {
     }
     render (){
         let todos = this.state.todoList.map((item, index) => {
-        return (<li><TodoItem todo={item} key={index}/></li>)
+        return (<li><TodoItem todo={item} key={index} onToggle={this.toggle.bind(this)}/></li>)
         })
 
-        console.log(todos)
 
         return (
             <div className='App'>
@@ -54,6 +53,11 @@ class App extends React.Component {
         todoList: this.state.todoList
       })
 
+    }
+
+    toggle(todo,e){
+      todo.status=todo.status==='completed'? '':'completed'
+      this.setState(this.state)
     }
 }
 
