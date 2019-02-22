@@ -9,14 +9,26 @@ import * as localStorage from './localStorage.js';
 class App extends React.Component {
     constructor (props){
         super(props);
-        this.state = {
-            newTodo: '',
-            todoList:localStorage.load('todoList')
+        if(localStorage.load('todoList')===null){
+            this.state = {
+              newTodo: '',
+              todoList: []
+            }
+        }else {
+            this.state = {
+              newTodo: '',
+              todoList:localStorage.load('todoList') 
+            }
         }
-    }
+      }
+      
     render (){
         let todos = this.state.todoList.filter((item)=>!item.deleted).map((item, index) => {
-        return (<li><TodoItem todo={item} key={index} onToggle={this.toggle.bind(this)} onDelete={this.delete.bind(this)}/></li>)
+        return (
+            <li key={index}>
+              <TodoItem todo={item} onToggle={this.toggle.bind(this)} onDelete={this.delete.bind(this)}/>
+            </li>
+          )
         })
 
 
@@ -33,7 +45,9 @@ class App extends React.Component {
 
         )
     }
-
+    componentDidUpdate(){
+      localStorage.save('todoList',this.state.todoList)
+    }
     addTodo(event) {
       this.state.todoList.push({
         id: idMaker(),
@@ -45,7 +59,6 @@ class App extends React.Component {
         newTodo: '',
         todoList: this.state.todoList
       })
-      localStorage.save('todoList',this.state.todoList)
     }
 
     changeTitle(event){
@@ -53,20 +66,17 @@ class App extends React.Component {
         newTodo: event.target.value,
         todoList: this.state.todoList
       })
-      localStorage.save('todoList',this.state.todoList)
 
     }
 
     toggle(todo,e){
       todo.status=todo.status==='completed'? '':'completed'
       this.setState(this.state)
-      localStorage.save('todoList',this.state.todoList)
     }
 
     delete(todo,e){
       todo.deleted='true'
       this.setState(this.state)
-      localStorage.save('todoList',this.state.todoList)
     }
 }
 
