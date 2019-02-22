@@ -1,16 +1,32 @@
 .App{
+  
   color: #333;
   border: 1px solid #aaa;
   border-radius: 4px;
   background: white;
   margin: 2em;
-  padding: 0 1em;
+  padding-bottom: 1.5em;
   min-height: 20em;
   min-width: 32em;
+  text-align: center;
   box-shadow: 0 0 1em hsla(0,0%,0%,0.15);
 }
 
-.App>h1 {
-  font-size: 24px;
+.App>header {
+  font-size: 16px;
   text-align: center;
-};
+  padding: 0.5em;
+  background-color: rgb(230, 46, 72);
+}
+
+.App>.dashBoard {
+  font-size: 16px;
+  height: 10em;
+  text-align: center;
+  background: linear-gradient(90deg,rgb(237, 132, 114),rgb(239, 147, 94));
+  opacity: 0.7;
+}
+
+.App>.inputWrapper {
+  margin: 1.5em;
+}

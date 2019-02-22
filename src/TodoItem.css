@@ -1,0 +1,22 @@
+.todoList>li>div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: black solid 1px; */
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    width: 24em;
+    height:2.5em;
+}
+.todoList>li>div{
+    background: rgb(234, 234, 234);
+    border: rgb(234, 234, 234) solid 1px;
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.todoList input{
+    height: 2.5em;
+    width: 2.5em;
+}

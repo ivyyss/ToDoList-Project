@@ -21,7 +21,7 @@ class App extends React.Component {
             }
         }
       }
-      
+
     render (){
         let todos = this.state.todoList.filter((item)=>!item.deleted).map((item, index) => {
         return (
@@ -34,7 +34,8 @@ class App extends React.Component {
 
         return (
             <div className='App'>
-                <h1>我的待办</h1>
+                <header>我的待办</header>
+                <div className='dashBoard'>hello</div>
                 <div className='inputWrapper' >
                     <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)} onChange={this.changeTitle.bind(this)}/>
                 </div>
