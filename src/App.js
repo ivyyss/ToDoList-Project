@@ -4,14 +4,14 @@ import 'normalize.css';
 import 'reset.css';
 import './App.css';
 import TodoItem from './TodoItem.js';
+import * as localStorage from './localStorage.js';
 
 class App extends React.Component {
     constructor (props){
         super(props);
         this.state = {
             newTodo: '',
-            todoList: [
-            ]
+            todoList:localStorage.load('todoList')
         }
     }
     render (){
@@ -45,6 +45,7 @@ class App extends React.Component {
         newTodo: '',
         todoList: this.state.todoList
       })
+      localStorage.save('todoList',this.state.todoList)
     }
 
     changeTitle(event){
@@ -52,17 +53,20 @@ class App extends React.Component {
         newTodo: event.target.value,
         todoList: this.state.todoList
       })
+      localStorage.save('todoList',this.state.todoList)
 
     }
 
     toggle(todo,e){
       todo.status=todo.status==='completed'? '':'completed'
       this.setState(this.state)
+      localStorage.save('todoList',this.state.todoList)
     }
 
     delete(todo,e){
       todo.deleted='true'
       this.setState(this.state)
+      localStorage.save('todoList',this.state.todoList)
     }
 }
 
