@@ -3,7 +3,7 @@ import './todoInput.css';
 
 export default class TodoInput extends React.Component {
     render (){
-        return <input type='text' value={this.props.content} onKeyPress={this.submit.bind(this)} onChange={this.changeTitle.bind(this)}/>
+        return <input type='text' placeholder="Type your plan here!" value={this.props.content} onKeyPress={this.submit.bind(this)} onChange={this.changeTitle.bind(this)}/>
     }
     submit (e){
         if(e.key==='Enter') {  

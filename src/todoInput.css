@@ -1,7 +1,16 @@
 input {
     width: 24em;
-    height:2.5em;
+    height:3em;
     background: rgb(234, 234, 234);
     border: rgb(234, 234, 234) solid 1px;
     border-radius: 6px;
+    padding-left: 2em;
+    outline: none;
 }
+
+input::placeholder{
+    color: #929292;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+  }

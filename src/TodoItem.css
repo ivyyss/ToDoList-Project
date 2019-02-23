@@ -2,13 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* border: black solid 1px; */
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     width: 24em;
     height:2.5em;
-}
-.todoList>li>div{
     background: rgb(234, 234, 234);
     border: rgb(234, 234, 234) solid 1px;
     border-radius: 6px;
@@ -16,7 +13,59 @@
     margin-right: auto;
 }
 
-.todoList input{
+.todoList input{    
     height: 2.5em;
     width: 2.5em;
+}
+.itemList {
+    color: #3B3838;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+    position: relative;
+}
+
+label{
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #929292;
+    background: rgb(255,255,255);
+    display: inline-block; 
+    position: absolute;
+    left: 10px;
+}
+
+label:hover{
+    border: 1px solid #FB2F5D;
+}
+
+input[type="checkbox"]:checked + label{
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 6px solid #FB2F5D;
+    background: rgb(255,255,255);
+    opacity: 0.8;
+    display: inline-block;
+    text-align: center; 
+}
+input[type="checkbox"]{
+    visibility: hidden;
+}
+button{
+    background: transparent; 
+    border: none; 
+    outline: none;
+}
+
+.icon-delete-copy{
+    font-size: 55px;
+    color: #FF274D;
+    opacity: 0.8;
+    margin-right: -20px;
+}
+.icon-delete-copy:hover{
+   color:#3B3838;
 }

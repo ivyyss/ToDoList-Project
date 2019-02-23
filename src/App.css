@@ -1,5 +1,5 @@
+
 .App{
-  
   color: #333;
   border: 1px solid #aaa;
   border-radius: 4px;
@@ -13,20 +13,32 @@
 }
 
 .App>header {
-  font-size: 16px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #FFFFFF;
+  font-size: 12px;
+  line-height: 32px;
+  height: 32px;
   text-align: center;
-  padding: 0.5em;
   background-color: rgb(230, 46, 72);
+  opacity: 0.8;
 }
 
 .App>.dashBoard {
-  font-size: 16px;
-  height: 10em;
-  text-align: center;
+
   background: linear-gradient(90deg,rgb(237, 132, 114),rgb(239, 147, 94));
   opacity: 0.7;
+  height: 10em;
+  text-align: center;
+  padding-top: 1.5em;
+}
+.dashBoard>p{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #FFFFFF; 
 }
 
 .App>.inputWrapper {
   margin: 1.5em;
 }
+

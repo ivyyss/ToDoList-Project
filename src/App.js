@@ -34,8 +34,11 @@ class App extends React.Component {
 
         return (
             <div className='App'>
-                <header>我的待办</header>
-                <div className='dashBoard'>hello</div>
+                <header>TO DO LIST</header>
+                <div className='dashBoard'>  
+                  <p>Hey, Stranger, Welcome to list!</p>
+                  <i></i>
+                </div>
                 <div className='inputWrapper' >
                     <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)} onChange={this.changeTitle.bind(this)}/>
                 </div>
