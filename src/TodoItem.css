@@ -26,7 +26,6 @@
 }
 
 label{
-    box-sizing: border-box;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -42,14 +41,20 @@ label:hover{
 }
 
 input[type="checkbox"]:checked + label{
-    content: '';
+    border: 1px solid #FB2F5D;
+}
+input[type="checkbox"]:checked + label::before{
+    box-sizing: border-box;
+    font-size: 18px;
+    content: "\2713";
+    color: rgb(255,255,255);
     width: 20px;
     height: 20px;
-    border: 6px solid #FB2F5D;
-    background: rgb(255,255,255);
+    border: 1px solid #FB2F5D;
+    border-radius: 50%;
+    background: #FB2F5D;
     opacity: 0.8;
     display: inline-block;
-    text-align: center; 
 }
 input[type="checkbox"]{
     visibility: hidden;
