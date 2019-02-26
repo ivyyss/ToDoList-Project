@@ -4,7 +4,6 @@ import 'normalize.css';
 import 'reset.css';
 import './App.css';
 import TodoItem from './TodoItem.js';
-import * as localStorage from './localStorage.js';
 
 class App extends React.Component {
     constructor (props){
@@ -17,7 +16,7 @@ class App extends React.Component {
         }else {
             this.state = {
               newTodo: '',
-              todoList:localStorage.load('todoList') 
+              todoList:[]
             }
         }
       }
@@ -50,7 +49,6 @@ class App extends React.Component {
         )
     }
     componentDidUpdate(){
-      localStorage.save('todoList',this.state.todoList)
     }
     addTodo(event) {
       this.state.todoList.push({
