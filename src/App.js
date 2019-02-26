@@ -6,13 +6,21 @@ import './App.css';
 import TodoItem from './TodoItem.js';
 import * as localStorage from './localStorage.js';
 
-import AV from 'leancloud-storage'
+import AV from 'leancloud-storage';
 
 var APP_ID = 'BwlLHpUypqlQQTDTQarqgORI-gzGzoHsz';
 var APP_KEY = '0EekaQvmuWuXdWhzo51gfRQR';
 AV.init({
   appId: APP_ID,
   appKey: APP_KEY
+})
+
+var TestObject = AV.Object.extend('TestObject');
+var testObject = new TestObject();
+testObject.save({
+  words: 'Hello World!'
+}).then(function(object) {
+  alert('LeanCloud Rocks!');
 })
 
 class App extends React.Component {
