@@ -6,6 +6,15 @@ import './App.css';
 import TodoItem from './TodoItem.js';
 import * as localStorage from './localStorage.js';
 
+import AV from 'leancloud-storage'
+
+var APP_ID = 'BwlLHpUypqlQQTDTQarqgORI-gzGzoHsz';
+var APP_KEY = '0EekaQvmuWuXdWhzo51gfRQR';
+AV.init({
+  appId: APP_ID,
+  appKey: APP_KEY
+})
+
 class App extends React.Component {
     constructor (props){
         super(props);
