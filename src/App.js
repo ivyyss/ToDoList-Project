@@ -4,21 +4,15 @@ import 'normalize.css';
 import 'reset.css';
 import './App.css';
 import TodoItem from './TodoItem.js';
+import UserDialog from './UserDialog.js';
 
 class App extends React.Component {
     constructor (props){
         super(props);
-        if(localStorage.load('todoList')===null){
-            this.state = {
-              newTodo: '',
-              todoList: []
-            }
-        }else {
-            this.state = {
-              newTodo: '',
-              todoList:[]
-            }
-        }
+        this.state = {
+          newTodo: '',
+          todoList:[]
+        } 
       }
 
     render (){
@@ -44,6 +38,7 @@ class App extends React.Component {
                 <ol className='todoList'>
                     {todos}
                 </ol>
+                <UserDialog/>
             </div>
 
         )
