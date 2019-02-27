@@ -56,8 +56,8 @@ export default class UserDialog extends React.Component {
             <div className='UserDialog-Wrapper'>
                 <div className='userDialog'>
                     <nav onChange={this.switch.bind(this)}>
-                        <input type='radio' value='signUp' checked={this.state.selected==='signUp'}/>SIGN UP
-                        <input type='radio' value='signIn' checked={this.state.selected==='signIn'}/>SIGN IN                   
+                        <label><input type='radio' value='signUp' checked={this.state.selected==='signUp'}/>SIGN UP</label>
+                        <label><input type='radio' value='signIn' checked={this.state.selected==='signIn'}/>SIGN IN</label>                  
                     </nav>
                     <div className='panel'>
                        {this.state.selected==='signUp'? signUpForm : signInForm}
