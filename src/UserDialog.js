@@ -6,7 +6,11 @@ export default class UserDialog extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            selected: 'signUp'
+            selected: 'signUp',
+            dataForm: {
+                username: '',
+                password: ''
+            }
         }
     }
 
@@ -15,21 +19,33 @@ export default class UserDialog extends React.Component {
             {selected: e.target.value}
         )
     }
+    signUp(e){}
+    signIn(e){}
+    changeUsername(e){
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.dataForm.username=e.target.value
+        this.setState(stateCopy)
+    }
+    changePassword(e){
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.dataForm.password=e.target.value
+        this.setState(stateCopy)
+    }
 
     render(){
         let signUpForm =(
-            <form className='signUp'>
+            <form className='signUp' onSubmit={this.signUp.bind(this)}>
                 <div className='row'>
                     <label>E-mail</label>
-                    <input type='text'></input>
+                    <input type='text'/>
                 </div>
                 <div className='row'>
                     <label>Username</label>
-                    <input type='text'></input>
+                    <input type='text' value={this.state.dataForm.username} onChange={this.changeUsername.bind(this)}/>
                 </div>
                 <div className='row'>
                     <label>Password</label>
-                    <input type='password'></input>
+                    <input type='password' value={this.state.dataForm.password} onChange={this.changePassword.bind(this)}/>
                 </div>
                 <div className='row action'>
                     <button>SIGNUP</button>
@@ -37,14 +53,14 @@ export default class UserDialog extends React.Component {
             </form>
         )
         let signInForm = (
-            <form className='signIn'>
+            <form className='signIn' onSubmit={this.signIn.bind(this)}>
                 <div className='row'>
                     <label>Username</label>
-                    <input type='text'></input>
+                    <input type='text' value={this.state.dataForm.username} onChange={this.changeUsername.bind(this)}/>
                 </div>
                 <div className='row'>
                     <label>Password</label>
-                    <input type='password'></input>
+                    <input type='password' value={this.state.dataForm.password} onChange={this.changePassword.bind(this)}/>
                 </div>
                 <div className='row action'>
                     <button>SIGNIN</button>
