@@ -1,0 +1,34 @@
+.UserDialog-Wrapper{ 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
+  .userDialog{
+    border-radius: 4px;
+    min-width: 20em;
+    background: white;
+    border: 1px solid #aaa;
+    box-shadow: 0 0 1em hsla(0,0%,0%,0.35);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.userDialog > nav{
+    font-size: 12px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userDialog > .panel { 
+    padding: 0 1em 1em; 
+}
+
+.userDialog form>.row{ 
+    display: flex; 
+    justify-content: space-around;
+}

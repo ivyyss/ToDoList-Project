@@ -8,42 +8,44 @@ export default class UserDialog extends React.Component {
     }
     render(){
         return (
-            <div className='userDialog'>
-                <nav>
-                    <label>SIGN UP</label>
-                    <label>SIGN IN</label>
-                </nav>
-                <div className='panel'>
-                    <form className='signUp'>
-                        <div className='row'>
-                            <label>E-mail</label>
-                            <input type='text'></input>
-                        </div>
-                        <div className='row'>
-                            <label>Username</label>
-                            <input type='text'></input>
-                        </div>
-                        <div className='row'>
-                            <label>Password</label>
-                            <input type='password'></input>
-                        </div>
-                        <div className='row action'>
-                            <button>SIGNUP</button>
-                        </div>
-                    </form>
-                    <form className='signIn'>
-                        <div className='row'>
-                            <label>Username</label>
-                            <input type='text'></input>
-                        </div>
-                        <div className='row'>
-                            <label>Password</label>
-                            <input type='password'></input>
-                        </div>
-                        <div className='row action'>
-                            <button>SIGNIN</button>
-                        </div>
-                    </form>
+            <div className='UserDialog-Wrapper'>
+                <div className='userDialog'>
+                    <nav>
+                        <input type='radio'/>SIGN UP
+                        <input type='radio'/>SIGN IN                   
+                    </nav>
+                    <div className='panel'>
+                        <form className='signUp'>
+                            <div className='row'>
+                                <label>E-mail</label>
+                                <input type='text'></input>
+                            </div>
+                            <div className='row'>
+                                <label>Username</label>
+                                <input type='text'></input>
+                            </div>
+                            <div className='row'>
+                                <label>Password</label>
+                                <input type='password'></input>
+                            </div>
+                            <div className='row action'>
+                                <button>SIGNUP</button>
+                            </div>
+                        </form>
+                        <form className='signIn'>
+                            <div className='row'>
+                                <label>Username</label>
+                                <input type='text'></input>
+                            </div>
+                            <div className='row'>
+                                <label>Password</label>
+                                <input type='password'></input>
+                            </div>
+                            <div className='row action'>
+                                <button>SIGNIN</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         )
