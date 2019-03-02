@@ -1,6 +1,7 @@
 
 import React from 'react';
 import './UserDialog.css';
+import {signUp} from './leanCloud.js';
 
 export default class UserDialog extends React.Component {
     constructor(props){
@@ -19,10 +20,20 @@ export default class UserDialog extends React.Component {
             {selected: e.target.value}
         )
     }
-    signUp(e){}
+    signUp(e){
+        e.preventDefault()
+        let {username,password}=this.state.dataForm;
+        let success = (user)=> {
+            console.log(user)
+        }
+        let error = (error)=> {
+            console.log(error)
+        }
+        signUp(username,password,success,error)
+    }
     signIn(e){}
 
-    // key -> bind(this. key)
+    // key -> bind(this,key)
     changeFormData(key,e){
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.dataForm[key]=e.target.value
@@ -30,22 +41,11 @@ export default class UserDialog extends React.Component {
 
     }
 
-    // changeUsername(e){
-    //     let stateCopy = JSON.parse(JSON.stringify(this.state))
-    //     stateCopy.dataForm.username=e.target.value
-    //     this.setState(stateCopy)
-    // }
-    // changePassword(e){
-    //     let stateCopy = JSON.parse(JSON.stringify(this.state))
-    //     stateCopy.dataForm.password=e.target.value
-    //     this.setState(stateCopy)
-    // }
-
     render(){
         let signUpForm =(
             <form className='signUp' onSubmit={this.signUp.bind(this)}>
                 <div className='row'>
-                    <label>E-mail</label>
+                    <label>Email</label>
                     <input type='text'/>
                 </div>
                 <div className='row'>
