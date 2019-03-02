@@ -10,6 +10,7 @@ class App extends React.Component {
     constructor (props){
         super(props);
         this.state = {
+          user: {},
           newTodo: '',
           todoList:[]
         } 
@@ -29,7 +30,7 @@ class App extends React.Component {
             <div className='App'>
                 <header>TO DO LIST</header>
                 <div className='dashBoard'>  
-                  <p>Hey, Stranger, Welcome to list!</p>
+                  <p>Hey, {this.state.user.username}, Welcome to list!</p>
                   <i></i>
                 </div>
                 <div className='inputWrapper' >
@@ -38,13 +39,18 @@ class App extends React.Component {
                 <ol className='todoList'>
                     {todos}
                 </ol>
-                <UserDialog/>
+                <UserDialog onSignUp={this.onSignUp.bind(this)}/>
             </div>
 
         )
     }
     componentDidUpdate(){
     }
+    onSignUp(user){
+      this.state.user=user
+      this.setState(this.state)
+    }
+
     addTodo(event) {
       this.state.todoList.push({
         id: idMaker(),
