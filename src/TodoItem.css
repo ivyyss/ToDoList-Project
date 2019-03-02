@@ -25,7 +25,7 @@
     position: relative;
 }
 
-.itemList>label{
+.itemList label{
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -36,14 +36,14 @@
     left: 10px;
 }
 
-.itemList>label:hover{
+.itemList label:hover{
     border: 1px solid #FB2F5D;
 }
 
-.itemList>input[type="checkbox"]:checked + .itemList>label{
+.itemList>input[type="checkbox"]:checked + label{
     border: 1px solid #FB2F5D;
 }
-.itemList>input[type="checkbox"]:checked + .itemList>label::before{
+.itemList input[type="checkbox"]:checked + label::before{
     box-sizing: border-box;
     font-size: 18px;
     content: "\2713";

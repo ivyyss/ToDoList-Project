@@ -40,5 +40,9 @@ export function getCurrentUser(){
       }else{
         return null
       }
-    }
+}
+export function logOut(){
+    AV.User.logOut()
+    return undefined
+}
 

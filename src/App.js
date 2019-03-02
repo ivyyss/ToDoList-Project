@@ -5,7 +5,7 @@ import 'reset.css';
 import './App.css';
 import TodoItem from './TodoItem.js';
 import UserDialog from './UserDialog.js';
-import {getCurrentUser} from './leanCloud';
+import {getCurrentUser,logOut} from './leanCloud';
 
 class App extends React.Component {
     constructor (props){
@@ -29,9 +29,11 @@ class App extends React.Component {
 
         return (
             <div className='App'>
-                <header>TO DO LIST</header>
+                <header>TO DO LIST
+                  {this.state.user.id ? <button onClick={this.logOut.bind(this)}>Log out</button> : null}
+                </header>
                 <div className='dashBoard'>  
-                  <p>Hey, {this.state.user.username} Welcome to list!</p>
+                  <p>Hey, {this.state.user.username ||'Friend'} Welcome to list!</p>
                   <i></i>
                 </div>
                 <div className='inputWrapper' >
@@ -47,7 +49,12 @@ class App extends React.Component {
     }
     componentDidUpdate(){
     }
-
+    logOut(){
+      logOut()
+      let stateCopy = JSON.parse(JSON.stringify(this.state))
+      stateCopy.user = {}
+      this.setState(stateCopy)
+    }
     onSignUp(user){
       let stateCopy = JSON.parse(JSON.stringify(this.state))
       stateCopy.user = user
