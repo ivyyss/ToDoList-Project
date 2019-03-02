@@ -5,12 +5,13 @@ import 'reset.css';
 import './App.css';
 import TodoItem from './TodoItem.js';
 import UserDialog from './UserDialog.js';
+import {getCurrentUser} from './leanCloud';
 
 class App extends React.Component {
     constructor (props){
         super(props);
         this.state = {
-          user: {},
+          user: getCurrentUser(),
           newTodo: '',
           todoList:[]
         } 
@@ -30,7 +31,7 @@ class App extends React.Component {
             <div className='App'>
                 <header>TO DO LIST</header>
                 <div className='dashBoard'>  
-                  <p>Hey, {this.state.user.username}, Welcome to list!</p>
+                  <p>Hey, {this.state.user.username} Welcome to list!</p>
                   <i></i>
                 </div>
                 <div className='inputWrapper' >
@@ -39,14 +40,14 @@ class App extends React.Component {
                 <ol className='todoList'>
                     {todos}
                 </ol>
-                <UserDialog onSignUp={this.onSignUp.bind(this)}/>
+                {this.state.user.id ? null:<UserDialog onSignUp={this.onSignUp.bind(this)}/>}
             </div>
 
         )
     }
     componentDidUpdate(){
     }
-    
+
     onSignUp(user){
       let stateCopy = JSON.parse(JSON.stringify(this.state))
       stateCopy.user = user
