@@ -25,7 +25,7 @@ export default class UserDialog extends React.Component {
         let {username,password}=this.state.dataForm;
         let success = (user)=> {
             this.props.onSignUp.call(null,user)
-            // console.log(user)
+            console.log(user)
         }
         let error = (error)=> {
             console.log(error)
@@ -81,9 +81,9 @@ export default class UserDialog extends React.Component {
         return (
             <div className='UserDialog-Wrapper'>
                 <div className='userDialog'>
-                    <nav onChange={this.switch.bind(this)}>
-                        <label><input type='radio' value='signUp' checked={this.state.selected==='signUp'}/>SIGN UP</label>
-                        <label><input type='radio' value='signIn' checked={this.state.selected==='signIn'}/>SIGN IN</label>                  
+                    <nav>
+                        <label><input type='radio' value='signUp' checked={this.state.selected==='signUp'} onChange={this.switch.bind(this)}/>SIGN UP</label>
+                        <label><input type='radio' value='signIn' checked={this.state.selected==='signIn'} onChange={this.switch.bind(this)}/>SIGN IN</label>                  
                     </nav>
                     <div className='panel'>
                        {this.state.selected==='signUp'? signUpForm : signInForm}
