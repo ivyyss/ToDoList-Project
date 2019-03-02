@@ -11,7 +11,7 @@ class App extends React.Component {
     constructor (props){
         super(props);
         this.state = {
-          user: getCurrentUser(),
+          user: getCurrentUser()||{},
           newTodo: '',
           todoList:[]
         } 
@@ -26,14 +26,13 @@ class App extends React.Component {
           )
         })
 
-
         return (
             <div className='App'>
                 <header>TO DO LIST
-                  {this.state.user.id ? <button onClick={this.logOut.bind(this)}>Log out</button> : null}
+                  {this.state.user.id ? <button onClick={this.logOut.bind(this)}>登出</button> : null}
                 </header>
                 <div className='dashBoard'>  
-                  <p>Hey, {this.state.user.username ||'Friend'} Welcome to list!</p>
+                  <p>Hey, {this.state.user.id ||'Friend'} Welcome to list!</p>
                   <i></i>
                 </div>
                 <div className='inputWrapper' >
@@ -42,13 +41,17 @@ class App extends React.Component {
                 <ol className='todoList'>
                     {todos}
                 </ol>
-                {this.state.user.id ? null:<UserDialog onSignUp={this.onSignUp.bind(this)}/>}
+                {this.state.user.id ? 
+                  null:
+                  <UserDialog onSignUp={this.onSignUp.bind(this)} onSignIn={this.onSignIn.bind(this)}/>
+                  }
             </div>
 
         )
     }
     componentDidUpdate(){
     }
+
     logOut(){
       logOut()
       let stateCopy = JSON.parse(JSON.stringify(this.state))
@@ -56,6 +59,12 @@ class App extends React.Component {
       this.setState(stateCopy)
     }
     onSignUp(user){
+      let stateCopy = JSON.parse(JSON.stringify(this.state))
+      stateCopy.user = user
+      this.setState(stateCopy)
+    }
+
+    onSignIn(user){
       let stateCopy = JSON.parse(JSON.stringify(this.state))
       stateCopy.user = user
       this.setState(stateCopy)
@@ -100,3 +109,4 @@ function idMaker(){
 }
 
 export default App;
+

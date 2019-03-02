@@ -1,7 +1,7 @@
 
 import React from 'react';
 import './UserDialog.css';
-import {signUp} from './leanCloud.js';
+import {signUp,signIn} from './leanCloud.js';
 
 export default class UserDialog extends React.Component {
     constructor(props){
@@ -14,34 +14,6 @@ export default class UserDialog extends React.Component {
             }
         }
     }
-
-    switch(e){
-        this.setState(
-            {selected: e.target.value}
-        )
-    }
-    signUp(e){
-        e.preventDefault()
-        let {username,password}=this.state.dataForm;
-        let success = (user)=> {
-            this.props.onSignUp.call(null,user)
-            // console.log(user)
-        }
-        let error = (error)=> {
-            console.log(error)
-        }
-        signUp(username,password,success,error)
-    }
-    signIn(e){}
-
-    // key -> bind(this,key)
-    changeFormData(key,e){
-        let stateCopy = JSON.parse(JSON.stringify(this.state))
-        stateCopy.dataForm[key]=e.target.value
-        this.setState(stateCopy)
-
-    }
-
     render(){
         let signUpForm =(
             <form className='signUp' onSubmit={this.signUp.bind(this)}>
@@ -91,5 +63,43 @@ export default class UserDialog extends React.Component {
                 </div>
             </div>
         )
+    }
+    switch(e){
+        this.setState(
+            {selected: e.target.value}
+        )
+    }
+    signUp(e){
+        e.preventDefault()
+        let {username,password}=this.state.dataForm;
+        let success = (user)=> {
+            this.props.onSignUp.call(null,user)
+            // console.log(user)
+        }
+        let error = (error)=> {
+            alert(error)
+        }
+        signUp(username,password,success,error)
+    }
+    signIn(e){
+        e.preventDefault()
+        let {username,password}=this.state.dataForm;
+        let success = (user)=> {
+            this.props.onSignIn.call(null,user)
+            // console.log(user)
+        }
+        let error = (error)=> {
+            alert(error)
+        }
+        signIn(username,password,success,error)
+
+    }
+
+    // key -> bind(this,key)
+    changeFormData(key,e){
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.dataForm[key]=e.target.value
+        this.setState(stateCopy)
+
     }
 }

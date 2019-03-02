@@ -26,6 +26,19 @@ export function signUp(username,password,successFn,errorFn) {
     });
 }
 
+export function signIn(username,password,successFn,errorFn){
+    AV.User.logIn(username, password).then(function (loggedInUser) {
+        let user = getUserFromAVUser(loggedInUser)
+        successFn.call(null,user)
+      }, function (error) {
+          errorFn.call(null,error)
+      }) 
+}
+export function logOut(){
+    AV.User.logOut()
+    return undefined
+}
+
 function getUserFromAVUser(AVUser){
     return {
         id: AVUser.id,
@@ -41,8 +54,3 @@ export function getCurrentUser(){
         return null
       }
 }
-export function logOut(){
-    AV.User.logOut()
-    return undefined
-}
-
