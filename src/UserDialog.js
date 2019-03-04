@@ -1,6 +1,8 @@
 
 import React from 'react';
 import './UserDialog.css';
+import SignUpForm from './SignUpForm.js';
+import SignInForm from './SignInForm.js';
 import {signUp,signIn,sendPasswordResetEmail} from './leanCloud.js';
 
 export default class UserDialog extends React.Component {
@@ -17,42 +19,6 @@ export default class UserDialog extends React.Component {
         }
     }
     render(){
-        let signUpForm =(
-            <form className='signUp' onSubmit={this.signUp.bind(this)}>
-                <div className='row'>
-                    <label>Email</label>
-                    <input type='text' value={this.state.dataForm.email} onChange={this.changeFormData.bind(this,'email')}/>
-                </div>
-                <div className='row'>
-                    <label>Username</label>
-                    <input type='text' value={this.state.dataForm.username} onChange={this.changeFormData.bind(this,'username')}/>
-                </div>
-                <div className='row'>
-                    <label>Password</label>
-                    <input type='password' value={this.state.dataForm.password} onChange={this.changeFormData.bind(this,'password')}/>
-                </div>
-                <div className='action'>
-                    <button>Submit</button>
-                </div>
-            </form>
-        )
-        let signInForm = (
-            <form className='signIn' onSubmit={this.signIn.bind(this)}>
-                <div className='row'>
-                    <label>Username</label>
-                    <input type='text' value={this.state.dataForm.username} onChange={this.changeFormData.bind(this,'username')}/>
-                </div>
-                <div className='row'>
-                    <label>Password</label>
-                    <input type='password' value={this.state.dataForm.password} onChange={this.changeFormData.bind(this,'password')}/>
-                </div>
-                <div className='action'>
-                    <button>Submit</button>
-                    <a href="#" onClick={this.showForgotPassword.bind(this)}>Forget your password？</a>
-                </div>
-            </form>
-        )
-
         let forgotPassword = (
             <div className="forgotPassword">
               <h3>
@@ -84,7 +50,9 @@ export default class UserDialog extends React.Component {
                     </div>
                 </nav>
                 <div className='panel'>
-                {this.state.selected==='signUp'? signUpForm : signInForm}
+                {this.state.selected==='signUp'? 
+                <SignUpForm dataForm={this.state.dataForm} onSubmit={this.signUp.bind(this)} onChange={this.changeFormData.bind(this)}/>:
+                <SignInForm dataForm={this.state.dataForm} onSubmit={this.signIn.bind(this)} onChange={this.changeFormData.bind(this)} onForgotPassword={this.showForgotPassword.bind(this)}/>}
                 </div>
             </div>
         )
@@ -100,7 +68,7 @@ export default class UserDialog extends React.Component {
         stateCopy.selectedTab='signInOrSignUp'
         this.setState(stateCopy)
     }
-    
+
     showForgotPassword(){
         let stateCopy=JSON.parse(JSON.stringify(this.state))
         stateCopy.selectedTab='forgotPassword'
