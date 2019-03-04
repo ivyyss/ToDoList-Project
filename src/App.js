@@ -5,7 +5,7 @@ import 'reset.css';
 import './App.css';
 import TodoItem from './TodoItem.js';
 import UserDialog from './UserDialog.js';
-import {getCurrentUser,logOut} from './leanCloud';
+import {getCurrentUser,signOut} from './leanCloud';
 
 class App extends React.Component {
     constructor (props){
@@ -29,7 +29,7 @@ class App extends React.Component {
         return (
             <div className='App'>
                 <header>TO DO LIST
-                  {this.state.user.id ? <button onClick={this.logOut.bind(this)}>登出</button> : null}
+                  {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}
                 </header>
                 <div className='dashBoard'>  
                   <p>Hey, {this.state.user.id ||'Friend'} Welcome to list!</p>
@@ -43,7 +43,7 @@ class App extends React.Component {
                 </ol>
                 {this.state.user.id ? 
                   null:
-                  <UserDialog onSignUp={this.onSignUp.bind(this)} onSignIn={this.onSignIn.bind(this)}/>
+                  <UserDialog onSignUp={this.onSignUpOrSignIn.bind(this)} onSignIn={this.onSignUpOrSignIn.bind(this)}/>
                   }
             </div>
 
@@ -52,19 +52,13 @@ class App extends React.Component {
     componentDidUpdate(){
     }
 
-    logOut(){
-      logOut()
+    signOut(){
+      signOut()
       let stateCopy = JSON.parse(JSON.stringify(this.state))
       stateCopy.user = {}
       this.setState(stateCopy)
     }
-    onSignUp(user){
-      let stateCopy = JSON.parse(JSON.stringify(this.state))
-      stateCopy.user = user
-      this.setState(stateCopy)
-    }
-
-    onSignIn(user){
+    onSignUpOrSignIn(user){
       let stateCopy = JSON.parse(JSON.stringify(this.state))
       stateCopy.user = user
       this.setState(stateCopy)

@@ -8,7 +8,25 @@
     justify-content: center; 
     align-items: center;
   }
-  .userDialog{
+
+
+nav>div{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+    height: 3em;
+    padding:10px 0px 10px 0px;
+    width: 50%;
+    height: 100%;
+    background: #F9335F;
+    opacity: 0.8;
+    
+}
+
+.userDialog{
     border-radius: 4px;
     min-width: 20em;
     background: white;
@@ -16,19 +34,53 @@
     box-shadow: 0 0 1em hsla(0,0%,0%,0.35);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.userDialog > nav{
-    font-size: 12px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.userDialog>nav label{
+    box-sizing: border-box;
+    height: 15px;
+    width: 15px;
+    border: 1px solid #929292;
+    background: rgb(255,255,255);
+    border-radius: 50%;
+    position: absolute;
+    margin-left: -35px;
+}
+.userDialog>nav label:hover{
+    border: 1px solid #F9335F;
+}
+
+.userDialog input[type='radio']{
+    visibility: hidden;
+}
+
+.userDialog input[type='radio']:checked + label{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 3px solid rgb(255,255,255);
+    background: #F9335F;
 }
 
 .userDialog > .panel { 
-    padding: 0 1em 1em; 
+    padding: 0px 25px 15px 25px;
+    font-size: 14px;
 }
 
 .userDialog form>.row{ 
     display: flex; 
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+.row input{
+    outline: none;
+}
+
+.userDialog .action{ 
+    padding-top: 15px;
+}
+
+.action button:hover{
+    background:  #FB2F5D;
+    opacity: 0.8;
+    color: rgb(255,255,255);
+    border-radius: 3px;
 }

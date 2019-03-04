@@ -29,8 +29,8 @@ export default class UserDialog extends React.Component {
                     <label>Password</label>
                     <input type='password' value={this.state.dataForm.password} onChange={this.changeFormData.bind(this,'password')}/>
                 </div>
-                <div className='row action'>
-                    <button>SIGNUP</button>
+                <div className='action'>
+                    <button>Submit</button>
                 </div>
             </form>
         )
@@ -44,8 +44,8 @@ export default class UserDialog extends React.Component {
                     <label>Password</label>
                     <input type='password' value={this.state.dataForm.password} onChange={this.changeFormData.bind(this,'password')}/>
                 </div>
-                <div className='row action'>
-                    <button>SIGNIN</button>
+                <div className='action'>
+                    <button>Submit</button>
                 </div>
             </form>
         )
@@ -54,8 +54,14 @@ export default class UserDialog extends React.Component {
             <div className='UserDialog-Wrapper'>
                 <div className='userDialog'>
                     <nav>
-                        <label><input type='radio' value='signUp' checked={this.state.selected==='signUp'} onChange={this.switch.bind(this)}/>SIGN UP</label>
-                        <label><input type='radio' value='signIn' checked={this.state.selected==='signIn'} onChange={this.switch.bind(this)}/>SIGN IN</label>                  
+                        <div>
+                            <input type='radio' id='Up' value='signUp' checked={this.state.selected==='signUp'} onChange={this.switch.bind(this)}/>SIGN UP
+                            <label htmlFor='Up'></label>
+                        </div>
+                        <div>
+                            <input type='radio' id='In' value='signIn' checked={this.state.selected==='signIn'} onChange={this.switch.bind(this)}/>SIGN IN
+                            <label htmlFor='In'></label>               
+                        </div>
                     </nav>
                     <div className='panel'>
                        {this.state.selected==='signUp'? signUpForm : signInForm}
@@ -77,7 +83,20 @@ export default class UserDialog extends React.Component {
             // console.log(user)
         }
         let error = (error)=> {
-            alert(error)
+            switch(error.code){
+                case 202:
+                alert('Username already existed!')
+                break
+                case 218:
+                alert('Invalid password, it must be a non-blank string.')
+                break
+                case 217:
+                alert('Invalid username, it must be a non-blank string.')
+                break
+                default:
+                alert(error)
+                break
+            }
         }
         signUp(username,password,success,error)
     }
@@ -86,10 +105,16 @@ export default class UserDialog extends React.Component {
         let {username,password}=this.state.dataForm;
         let success = (user)=> {
             this.props.onSignIn.call(null,user)
-            // console.log(user)
         }
         let error = (error)=> {
-            alert(error)
+            switch(error.code){
+                case 210:
+                alert('Wrong username or password!')
+                break
+                default:
+                alert(error)
+                break
+            }
         }
         signIn(username,password,success,error)
 

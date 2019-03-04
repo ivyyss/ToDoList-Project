@@ -34,9 +34,9 @@ export function signIn(username,password,successFn,errorFn){
           errorFn.call(null,error)
       }) 
 }
-export function logOut(){
+export function signOut(){
     AV.User.logOut()
-    return undefined
+    return undefined;
 }
 
 function getUserFromAVUser(AVUser){
