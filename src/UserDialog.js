@@ -3,6 +3,7 @@ import React from 'react';
 import './UserDialog.css';
 import SignUpForm from './SignUpForm.js';
 import SignInForm from './SignInForm.js';
+import ForgotPasswordForm from './ForgotPasswordForm.js';
 import {signUp,signIn,sendPasswordResetEmail} from './leanCloud.js';
 
 export default class UserDialog extends React.Component {
@@ -19,23 +20,23 @@ export default class UserDialog extends React.Component {
         }
     }
     render(){
-        let forgotPassword = (
-            <div className="forgotPassword">
-              <h3>
-                RESET PASSWORD
-              </h3>
-              <form className="forgotPassword" onSubmit={this.resetPassword.bind(this)}> {/* 登录*/}
-                <div className="row">
-                  <label>Email</label>
-                  <input type="text" value={this.state.dataForm.email} onChange={this.changeFormData.bind(this,'email')}/>
-                </div>
-                <div className="action">
-                  <button type="submit">Send Email</button>
-                  <a href="#" onClick={this.returnToSignIn.bind(this)}>Return to signIn</a>
-                </div>
-              </form>              
-            </div>
-        )
+        // let forgotPassword = (
+        //     <div className="forgotPassword">
+        //       <h3>
+        //         RESET PASSWORD
+        //       </h3>
+        //       <form className="forgotPassword" onSubmit={this.resetPassword.bind(this)}> {/* 登录*/}
+        //         <div className="row">
+        //           <label>Email</label>
+        //           <input type="text" value={this.state.dataForm.email} onChange={this.changeFormData.bind(this,'email')}/>
+        //         </div>
+        //         <div className="action">
+        //           <button type="submit">Send Email</button>
+        //           <a href="#" onClick={this.returnToSignIn.bind(this)}>Return to signIn</a>
+        //         </div>
+        //       </form>              
+        //     </div>
+        // )
 
         let signInOrSignUp = (
             <div className='signInOrSignUp userDialog'>
@@ -59,7 +60,9 @@ export default class UserDialog extends React.Component {
 
         return (
             <div className='UserDialog-Wrapper'>
-                   {this.state.selectedTab==='signInOrSignUp' ? signInOrSignUp : forgotPassword}
+                   {this.state.selectedTab==='signInOrSignUp' ? signInOrSignUp : 
+                   <ForgotPasswordForm dataForm={this.state.dataForm} onChange={this.changeFormData.bind(this)} onSubmit={this.resetPassword.bind(this)} onSignIn={this.returnToSignIn.bind(this)}/>
+                   }
             </div>
         )
     }
