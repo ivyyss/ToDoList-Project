@@ -89,6 +89,9 @@ nav>div{
     color: #aaa;
     padding-left: 10px;
 }
+.action>a:hover{
+    color: #FB2F5D;
+}
 
 .forgotPassword > form { 
     padding: 0px 25px 15px 25px;

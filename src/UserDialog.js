@@ -1,7 +1,7 @@
 
 import React from 'react';
 import './UserDialog.css';
-import {signUp,signIn} from './leanCloud.js';
+import {signUp,signIn,sendPasswordResetEmail} from './leanCloud.js';
 
 export default class UserDialog extends React.Component {
     constructor(props){
@@ -65,6 +65,7 @@ export default class UserDialog extends React.Component {
                 </div>
                 <div className="action">
                   <button type="submit">Send Email</button>
+                  <a href="#" onClick={this.returnToSignIn.bind(this)}>Return to signIn</a>
                 </div>
               </form>              
             </div>
@@ -94,13 +95,34 @@ export default class UserDialog extends React.Component {
             </div>
         )
     }
-
+    returnToSignIn(){
+        let stateCopy=JSON.parse(JSON.stringify(this.state))
+        stateCopy.selectedTab='signInOrSignUp'
+        this.setState(stateCopy)
+    }
+    
     showForgotPassword(){
         let stateCopy=JSON.parse(JSON.stringify(this.state))
         stateCopy.selectedTab='forgotPassword'
         this.setState(stateCopy)
     }
-    resetPassword(){}
+    resetPassword(e){
+        e.preventDefault()
+        let success=(success)=>{
+            alert('Email sent!')
+        }
+        let error=(error) =>{
+            switch(error.code){
+                case 400:
+                alert('Email not found!')
+                break
+                default:
+                alert(error)
+                break
+            }
+        }
+        sendPasswordResetEmail(this.state.dataForm.email,success,error)
+    }
 
     switch(e){
         this.setState(

@@ -55,3 +55,12 @@ export function getCurrentUser(){
         return null
       }
 }
+
+export function sendPasswordResetEmail(email,successFn,errorFn){
+    AV.User.requestPasswordReset(email).then(function (success) {
+        successFn.call()
+    }, function (error) {
+        errorFn.call(null,error)
+    })
+}
+
