@@ -9,6 +9,7 @@ export default class UserDialog extends React.Component {
         this.state={
             selected: 'signUp',
             dataForm: {
+                email:'',
                 username: '',
                 password: ''
             }
@@ -19,7 +20,7 @@ export default class UserDialog extends React.Component {
             <form className='signUp' onSubmit={this.signUp.bind(this)}>
                 <div className='row'>
                     <label>Email</label>
-                    <input type='text'/>
+                    <input type='text' value={this.state.dataForm.email} onChange={this.changeFormData.bind(this,'email')}/>
                 </div>
                 <div className='row'>
                     <label>Username</label>
@@ -78,7 +79,7 @@ export default class UserDialog extends React.Component {
     }
     signUp(e){
         e.preventDefault()
-        let {username,password}=this.state.dataForm;
+        let {email,username,password}=this.state.dataForm;
         let success = (user)=> {
             this.props.onSignUp.call(null,user)
             // console.log(user)
@@ -99,7 +100,7 @@ export default class UserDialog extends React.Component {
                 break
             }
         }
-        signUp(username,password,success,error)
+        signUp(email,username,password,success,error)
     }
     signIn(e){
         e.preventDefault()
