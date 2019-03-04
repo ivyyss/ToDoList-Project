@@ -27,7 +27,7 @@ nav>div{
     
 }
 
-.userDialog{
+.userDialog,.forgotPassword{
     border-radius: 4px;
     min-width: 20em;
     background: white;
@@ -88,4 +88,30 @@ nav>div{
 .action>a{
     color: #aaa;
     padding-left: 10px;
+}
+
+.forgotPassword > form { 
+    padding: 0px 25px 15px 25px;
+    font-size: 14px;
+}
+.forgotPassword > h3{
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+    padding:10px 0px 10px 0px;
+    background: #F9335F;
+    opacity: 0.8;
+    
+}
+
+.forgotPassword .row{ 
+    display: flex; 
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 15px;
+}
+
+.forgotPassword .action{ 
+    padding-top: 15px;
 }

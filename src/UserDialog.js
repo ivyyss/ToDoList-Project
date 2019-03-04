@@ -8,10 +8,11 @@ export default class UserDialog extends React.Component {
         super(props);
         this.state={
             selected: 'signUp',
+            selectedTab: 'signInOrSignUp',
             dataForm: {
                 email:'',
                 username: '',
-                password: ''
+                password: '',
             }
         }
     }
@@ -47,31 +48,60 @@ export default class UserDialog extends React.Component {
                 </div>
                 <div className='action'>
                     <button>Submit</button>
-                    <a href="javascript:;">Forget your password？</a>
+                    <a href="#" onClick={this.showForgotPassword.bind(this)}>Forget your password？</a>
                 </div>
             </form>
         )
 
-        return (
-            <div className='UserDialog-Wrapper'>
-                <div className='userDialog'>
-                    <nav>
-                        <div>
-                            <input type='radio' id='Up' value='signUp' checked={this.state.selected==='signUp'} onChange={this.switch.bind(this)}/>SIGN UP
-                            <label htmlFor='Up'></label>
-                        </div>
-                        <div>
-                            <input type='radio' id='In' value='signIn' checked={this.state.selected==='signIn'} onChange={this.switch.bind(this)}/>SIGN IN
-                            <label htmlFor='In'></label>               
-                        </div>
-                    </nav>
-                    <div className='panel'>
-                       {this.state.selected==='signUp'? signUpForm : signInForm}
+        let forgotPassword = (
+            <div className="forgotPassword">
+              <h3>
+                RESET PASSWORD
+              </h3>
+              <form className="forgotPassword" onSubmit={this.resetPassword.bind(this)}> {/* 登录*/}
+                <div className="row">
+                  <label>Email</label>
+                  <input type="text" value={this.state.dataForm.email} onChange={this.changeFormData.bind(this,'email')}/>
+                </div>
+                <div className="action">
+                  <button type="submit">Send Email</button>
+                </div>
+              </form>              
+            </div>
+        )
+
+        let signInOrSignUp = (
+            <div className='signInOrSignUp userDialog'>
+                <nav>
+                    <div>
+                        <input type='radio' id='Up' value='signUp' checked={this.state.selected==='signUp'} onChange={this.switch.bind(this)}/>SIGN UP
+                        <label htmlFor='Up'></label>
                     </div>
+                    <div>
+                        <input type='radio' id='In' value='signIn' checked={this.state.selected==='signIn'} onChange={this.switch.bind(this)}/>SIGN IN
+                        <label htmlFor='In'></label>               
+                    </div>
+                </nav>
+                <div className='panel'>
+                {this.state.selected==='signUp'? signUpForm : signInForm}
                 </div>
             </div>
         )
+
+        return (
+            <div className='UserDialog-Wrapper'>
+                   {this.state.selectedTab==='signInOrSignUp' ? signInOrSignUp : forgotPassword}
+            </div>
+        )
     }
+
+    showForgotPassword(){
+        let stateCopy=JSON.parse(JSON.stringify(this.state))
+        stateCopy.selectedTab='forgotPassword'
+        this.setState(stateCopy)
+    }
+    resetPassword(){}
+
     switch(e){
         this.setState(
             {selected: e.target.value}
