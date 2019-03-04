@@ -29,11 +29,11 @@ class App extends React.Component {
         return (
             <div className='App'>
                 <header>TO DO LIST
-                  {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}
+                  {this.state.user.id ? <button onClick={this.signOut.bind(this)}><i className='iconfont icon-logout-copy'></i></button> : null}
                 </header>
                 <div className='dashBoard'>  
-                  <p>Hey, {this.state.user.id ||'Friend'} Welcome to list!</p>
-                  <i></i>
+                  <p>Hey, {this.state.user.username ||'Friend'} Welcome to list!</p>
+                  <i className='iconfont icon-smile-copy'></i>
                 </div>
                 <div className='inputWrapper' >
                     <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)} onChange={this.changeTitle.bind(this)}/>

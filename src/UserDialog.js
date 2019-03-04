@@ -46,6 +46,7 @@ export default class UserDialog extends React.Component {
                 </div>
                 <div className='action'>
                     <button>Submit</button>
+                    <a href="javascript:;">Forget your password？</a>
                 </div>
             </form>
         )
