@@ -9,6 +9,27 @@ AV.init({
 
 export default AV;
 
+// 创建todomodel对象，用于todo的增加删除等
+export const TodoModel = {
+    create({title,content,deleted},successFn,errorFn){  
+        var Todo = AV.Object.extend('Todo')
+        // 新建一个 Todo 对象
+        var todo = new Todo()
+        todo.set('title', title)
+        todo.set('content', content)
+        todo.set('deleted',deleted)
+        todo.save().then(function (todo) {
+        successFn.call(null,todo.id)
+        console.log('New object created with objectId: ' + todo.id);
+        }, function (error) {
+        errorFn.call(null,error)
+        })
+    },
+    update(){},
+    destory(){}
+}
+
+
 
 export function signUp(email,username,password,successFn,errorFn) {
     var user = new AV.User()

@@ -5,7 +5,7 @@ import 'reset.css';
 import './App.css';
 import TodoItem from './TodoItem.js';
 import UserDialog from './UserDialog.js';
-import {getCurrentUser,signOut} from './leanCloud';
+import {getCurrentUser,signOut,TodoModel} from './leanCloud';
 
 
 class App extends React.Component {
@@ -66,16 +66,33 @@ class App extends React.Component {
     }
 
     addTodo(event) {
-      this.state.todoList.push({
-        id: idMaker(),
+
+      let newTodo ={
         title: event.target.value,
         status: null,
         deleted: false
+      }
+      // this.state.todoList.push({
+      //   id: idMaker(),
+      //   title: event.target.value,
+      //   status: null,
+      //   deleted: false
+      // })
+      TodoModel.create(newTodo,(id)=>{
+        newTodo.id=id
+        this.state.todoList.push(newTodo)
+        this.setState({
+          newTodo: '',
+          todoList: this.state.todoList
+        })
+        console.log('1')
+      },(error)=>{
+        console.log(error)
       })
-      this.setState({
-        newTodo: '',
-        todoList: this.state.todoList
-      })
+      // this.setState({
+      //   newTodo: '',
+      //   todoList: this.state.todoList
+      // })
     }
 
     changeTitle(event){
@@ -97,11 +114,11 @@ class App extends React.Component {
     }
 }
 
-let id = 0
-function idMaker(){
-  id+=1
-  return id
-}
+// let id = 0
+// function idMaker(){
+//   id+=1
+//   return id
+// }
 
 export default App;
 
