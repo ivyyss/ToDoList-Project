@@ -16,7 +16,7 @@ class App extends React.Component {
           newTodo: '',
           todoList:[]
         }
-        
+
         let user =getCurrentUser() 
         if(user){
           TodoModel.getByUser(user,(todos)=>{
@@ -112,13 +112,22 @@ class App extends React.Component {
     }
 
     toggle(todo,e){
+      let oldStatus = todo.status
+ 
       todo.status=todo.status==='completed'? '':'completed'
-      this.setState(this.state)
+      TodoModel.update(todo,()=>{
+        this.setState(this.state)
+      }, (error) => {
+        todo.status = oldStatus
+        this.setState(this.state)
+      })
     }
 
     delete(todo,e){
-      todo.deleted='true'
-      this.setState(this.state)
+      TodoModel.destory(todo.id,()=>{
+        todo.deleted='true'
+        this.setState(this.state)
+      })
     }
 }
 
