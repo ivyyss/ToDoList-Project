@@ -78,7 +78,7 @@ class App extends React.Component {
 
       let newTodo ={
         title: event.target.value,
-        status: null,
+        status: '',
         deleted: false
       }
       // this.state.todoList.push({

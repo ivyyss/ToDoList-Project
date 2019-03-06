@@ -13,6 +13,7 @@ export default AV;
 export const TodoModel = {
     getByUser(user,successFn,errorFn){
         var query = new AV.Query('Todo')
+        query.equalTo('deleted',false)
         query.find().then(function (todos) {
                 let array = todos.map((todo)=>{
                     return {id:todo.id,...todo.attributes}
@@ -55,12 +56,7 @@ export const TodoModel = {
         }, (error) => errorFn && errorFn.call(null, error))
     },
     destory(todoId,successFn,errorFn){
-        let todo = AV.Object.createWithoutData('Todo', todoId)
-        todo.destroy().then(function (success) {
-          successFn.call(null)
-        }, function (error) {
-          errorFn.call(null)
-        })
+      TodoModel.update({id:todoId,deleted:true},successFn,errorFn)
     }
 }
 
