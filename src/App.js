@@ -15,7 +15,16 @@ class App extends React.Component {
           user: getCurrentUser()||{},
           newTodo: '',
           todoList:[]
-        } 
+        }
+        
+        let user =getCurrentUser() 
+        if(user){
+          TodoModel.getByUser(user,(todos)=>{
+            let stateCopy=JSON.parse(JSON.stringify(this.state))
+            stateCopy.todoList=todos
+            this.setState(stateCopy)
+          })
+        }
       }
 
     render (){
@@ -85,7 +94,6 @@ class App extends React.Component {
           newTodo: '',
           todoList: this.state.todoList
         })
-        console.log('1')
       },(error)=>{
         console.log(error)
       })

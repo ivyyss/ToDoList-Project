@@ -11,12 +11,24 @@ export default AV;
 
 // 创建todomodel对象，用于todo的增加删除等
 export const TodoModel = {
-    create({title,content,deleted},successFn,errorFn){  
+    getByUser(user,successFn,errorFn){
+        var query = new AV.Query('Todo')
+        query.find().then(function (todos) {
+                let array = todos.map((todo)=>{
+                    return {id:todo.id,...todo.attributes}
+                })
+                successFn.call(null,array)
+            },(error)=>{
+                errorFn.call(null,error)
+            }
+       )
+    },
+    create({title,status,deleted},successFn,errorFn){  
         var Todo = AV.Object.extend('Todo')
         // 新建一个 Todo 对象
         var todo = new Todo()
         todo.set('title', title)
-        todo.set('content', content)
+        todo.set('status', status)
         todo.set('deleted',deleted)
         todo.save().then(function (todo) {
         successFn.call(null,todo.id)
