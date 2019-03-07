@@ -42,8 +42,18 @@ class App extends React.Component {
                   {this.state.user.id ? <button onClick={this.signOut.bind(this)}><i className='iconfont icon-logout-copy'></i></button> : null}
                 </header>
                 <div className='dashBoard'>  
-                  <p>Hey, {this.state.user.username ||'Friend'} Welcome to list!</p>
-                  <i className='iconfont icon-smile-copy'></i>
+                  <p>Hey, <span>{this.state.user.username ||'Friend'} </span> Welcome to list!</p>
+                  <div className='pic'>
+                    <i className='iconfont icon-smile-copy active'></i>
+                    <i className='iconfont icon-smile-copy active'></i>
+                    <i className='iconfont icon-smile-copy active'></i>
+                    <i className='iconfont icon-smile-copy active'></i>
+                    <i className='iconfont icon-smile-copy active'></i>
+                    <i className='iconfont icon-smile-copy active'></i>
+                    <span>...</span>
+                    {console.log(this.state.todoList.filter((item)=>item.status).length)}
+                  </div>
+                  <p className='end'>You have completed <span>{this.state.todoList.filter((item)=>item.status).length}</span> plans!</p>
                 </div>
                 <div className='inputWrapper' >
                     <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)} onChange={this.changeTitle.bind(this)}/>
@@ -81,12 +91,7 @@ class App extends React.Component {
         status: '',
         deleted: false
       }
-      // this.state.todoList.push({
-      //   id: idMaker(),
-      //   title: event.target.value,
-      //   status: null,
-      //   deleted: false
-      // })
+
       TodoModel.create(newTodo,(id)=>{
         newTodo.id=id
         this.state.todoList.push(newTodo)
@@ -97,10 +102,6 @@ class App extends React.Component {
       },(error)=>{
         console.log(error)
       })
-      // this.setState({
-      //   newTodo: '',
-      //   todoList: this.state.todoList
-      // })
     }
 
     changeTitle(event){
@@ -113,6 +114,7 @@ class App extends React.Component {
 
     toggle(todo,e){
       let oldStatus = todo.status
+
  
       todo.status=todo.status==='completed'? '':'completed'
       TodoModel.update(todo,()=>{
@@ -130,12 +132,6 @@ class App extends React.Component {
       })
     }
 }
-
-// let id = 0
-// function idMaker(){
-//   id+=1
-//   return id
-// }
 
 export default App;
 

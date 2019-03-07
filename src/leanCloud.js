@@ -41,7 +41,7 @@ export const TodoModel = {
 
         todo.save().then(function (todo) {
         successFn.call(null,todo.id)
-        console.log('New object created with objectId: ' + todo.id);
+        // console.log('New object created with objectId: ' + todo.id);
         }, function (error) {
         errorFn.call(null,error)
         })

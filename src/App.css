@@ -54,8 +54,23 @@
   color: #FFFFFF;
 }
 
-.dashBoard>i{
+.pic>i{
   font-size: 36px;
+  padding-right: 5px;
+}
+.pic{
+  margin: 0 auto;
+}
+.pic>.active{
   color: #FF0039;
 }
-
+.pic>span{
+  color: #FF0039;
+}
+.dashBoard>p>span{
+  font-weight: 400;
+  font-size: 24px;
+}
+.end{
+  padding-top: 24px;
+}
