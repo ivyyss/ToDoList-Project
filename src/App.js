@@ -6,6 +6,7 @@ import './App.css';
 import TodoItem from './TodoItem.js';
 import UserDialog from './UserDialog.js';
 import {getCurrentUser,signOut,TodoModel} from './leanCloud';
+import Livepic from './Livepic.js';
 
 
 class App extends React.Component {
@@ -43,8 +44,9 @@ class App extends React.Component {
                 </header>
                 <div className='dashBoard'>  
                   <p>Hey, <span>{this.state.user.username ||'Friend'} </span> Welcome to list!</p>
-                  <div className='pic'>
-                    <i className='iconfont icon-smile-copy active'></i>
+                  <Livepic completedCount={this.state.todoList.filter((item)=>item.status).length}/>
+                  {/* <div className='pic'>
+                    <i id='1' className='iconfont icon-smile-copy active'>{console.log(this.id)}</i>
                     <i className='iconfont icon-smile-copy active'></i>
                     <i className='iconfont icon-smile-copy active'></i>
                     <i className='iconfont icon-smile-copy active'></i>
@@ -52,7 +54,8 @@ class App extends React.Component {
                     <i className='iconfont icon-smile-copy active'></i>
                     <span>...</span>
                     {console.log(this.state.todoList.filter((item)=>item.status).length)}
-                  </div>
+                  </div> */}
+
                   <p className='end'>You have completed <span>{this.state.todoList.filter((item)=>item.status).length}</span> plans!</p>
                 </div>
                 <div className='inputWrapper' >

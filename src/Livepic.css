@@ -1,0 +1,13 @@
+.pic>i{
+    font-size: 36px;
+    padding-right: 5px;
+  }
+  .pic{
+    margin: 0 auto;
+  }
+  .pic>.active{
+    color: #FF0039;
+  }
+  .pic>span{
+    color: #FF0039;
+  }
